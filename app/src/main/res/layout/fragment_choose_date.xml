@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:context=".ui.ChooseDateFragment">
+
+        <DatePicker
+            android:id="@+id/calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:headerBackground="@color/black"
+            android:theme="@style/DialogTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/okBtn"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:textColor="@color/black"-->
+            <!--                android:textSize="18sp"-->
+            <!--                android:textStyle="bold"-->
+            <!--                android:text="ОК"-->
+            <!--                android:paddingTop="10dp"-->
+            <!--                android:paddingBottom="10dp"-->
+            <!--                android:paddingStart="16dp"-->
+            <!--                android:paddingEnd="16dp"-->
+            <!--                android:layout_marginTop="16dp"-->
+            <!--                android:layout_marginEnd="16dp"-->
+            <!--                android:textAllCaps="false"-->
+            <!--                android:layout_gravity="bottom|end"/>-->
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/cancelBtn"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:textColor="@color/black"-->
+            <!--                android:textSize="18sp"-->
+            <!--                android:textStyle="bold"-->
+            <!--                android:text="ОТМЕНА"-->
+            <!--                android:paddingTop="10dp"-->
+            <!--                android:paddingBottom="10dp"-->
+            <!--                android:paddingStart="16dp"-->
+            <!--                android:paddingEnd="16dp"-->
+            <!--                android:layout_marginTop="16dp"-->
+            <!--                android:layout_marginEnd="80dp"-->
+            <!--                android:layout_gravity="bottom|end"/>-->
+        </DatePicker>
+
+        <TextView
+            android:id="@+id/okBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:paddingStart="16dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="10dp"
+            android:text="ОК"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/calendar"
+            app:layout_constraintTop_toBottomOf="@+id/calendar" />
+
+        <TextView
+            android:id="@+id/cancelBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="10dp"
+            android:text="ОТМЕНА"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/okBtn"
+            app:layout_constraintTop_toBottomOf="@+id/calendar" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

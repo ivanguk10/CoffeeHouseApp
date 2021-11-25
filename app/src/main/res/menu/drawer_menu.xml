@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/homeFragment"
+            android:title="@string/main"
+            android:icon="@drawable/ic_coffee_24" />
+        <item
+            android:id="@+id/profileFragment"
+            android:title="@string/profile"
+            android:icon="@drawable/ic_profile" />
+        <item
+            android:id="@+id/settingsFragment"
+            android:title="@string/settings"
+            android:icon="@drawable/ic_settings_24"/>
+        <item
+            android:id="@+id/aboutUsFragment"
+            android:title="@string/about_us"
+            android:icon="@drawable/ic_info_24"/>
+    </group>
+</menu>

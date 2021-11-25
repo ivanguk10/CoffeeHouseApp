@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.AboutUsFragment">
+
+        <ImageView
+            android:id="@+id/aboutUsBack"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/black"
+            android:src="@drawable/ic__back_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/default_text_input_layout"
+            android:theme="@style/EditTextThemeOverlay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="Default"
+            android:textColorHint="@color/purple_200"
+            app:helperText="Default helper"
+            app:helperTextTextAppearance="@style/HelperTextAppearance"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/default_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:paddingTop="20dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textColor="@color/white"
+                android:text="@string/profile"
+                android:textColorHighlight="@color/yellow"
+                app:backgroundTint="@color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

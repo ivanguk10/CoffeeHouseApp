@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">CoffeeHouseApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="coffee_house">Coffee House</string>
+    <string name="get_points">Получите баллы\nза заказ</string>
+    <string name="news_and_sales">Новости и акции</string>
+    <string name="All">Все</string>
+    <string name="hits">Хиты</string>
+    <string name="all_menu_for_points">Всё меню за баллы</string>
+    <string name="coffee">Кофе</string>
+    <string name="tea_and_сacao">Чай и какао</string>
+    <string name="cold_drinks">Холодные напитки</string>
+    <string name="desserts">Выпечка и десерты</string>
+    <string name="adress">Адреса</string>
+    <string name="opinions">Отзывы</string>
+    <string name="news_description">При покупке тирамису,капучино в подарок</string>
+    <string name="profile">Профиль</string>
+    <string name="about_us">О нас</string>
+    <string name="settings">Настройки</string>
+    <string name="main">Главная</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="points">Баллы</string>
+
+
+</resources>
