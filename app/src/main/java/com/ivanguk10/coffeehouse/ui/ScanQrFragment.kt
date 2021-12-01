@@ -3,18 +3,20 @@ package com.ivanguk10.coffeehouse.ui
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
+import android.view.*
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.mlkit.vision.barcode.Barcode
 import com.google.mlkit.vision.barcode.BarcodeScanner
+import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.common.InputImage
 import com.ivanguk10.coffeehouse.databinding.FragmentScanQrBinding
@@ -43,6 +45,7 @@ class ScanQrFragment : Fragment() {
         get() {
             // Get screen metrics used to setup camera for full screen resolution
             val metrics = DisplayMetrics().also { binding.previewView.display?.getRealMetrics(it) }
+
             return aspectRatio(metrics.widthPixels, metrics.heightPixels)
         }
 
@@ -60,10 +63,6 @@ class ScanQrFragment : Fragment() {
     }
 
     private fun setupCamera() {
-//        previewView = activity?.findViewById(R.id.preview_view)
-//        textView = activity?.findViewById(R.id.textView)
-//        Log.i("TAG", previewView.toString())
-//        Log.i("TAG", textView.toString())
         cameraSelector = CameraSelector.Builder().requireLensFacing(lensFacing).build()
         cameraXViewModel.processCameraProvider.observe(viewLifecycleOwner, { provider ->
             cameraProvider = provider
@@ -100,7 +99,7 @@ class ScanQrFragment : Fragment() {
 
         try {
             cameraProvider!!.bindToLifecycle(
-                /* lifecycleOwner= */this,
+                this,
                 cameraSelector!!,
                 previewUseCase
             )
@@ -112,11 +111,9 @@ class ScanQrFragment : Fragment() {
     }
 
     private fun bindAnalyseUseCase() {
-        // Note that if you know which format of barcode your app is dealing with, detection will be
-        // faster to specify the supported barcode formats one by one, e.g.
-        // BarcodeScannerOptions.Builder()
-        //     .setBarcodeFormats(Barcode.FORMAT_QR_CODE)
-        //     .build();
+         BarcodeScannerOptions.Builder()
+             .setBarcodeFormats(Barcode.FORMAT_QR_CODE)
+             .build();
         val barcodeScanner: BarcodeScanner = BarcodeScanning.getClient()
 
         if (cameraProvider == null) {
@@ -135,15 +132,14 @@ class ScanQrFragment : Fragment() {
         val cameraExecutor = Executors.newSingleThreadExecutor()
 
         analysisUseCase?.setAnalyzer(
-            cameraExecutor,
-            ImageAnalysis.Analyzer { imageProxy ->
+            cameraExecutor, { imageProxy ->
                 processImageProxy(barcodeScanner, imageProxy)
             }
         )
 
         try {
             cameraProvider!!.bindToLifecycle(
-                /* lifecycleOwner= */this,
+                this,
                 cameraSelector!!,
                 analysisUseCase
             )
@@ -165,12 +161,14 @@ class ScanQrFragment : Fragment() {
 
         barcodeScanner.process(inputImage)
             .addOnSuccessListener { barcodes ->
-                barcodes.forEach {
-                    Log.d(TAG, it.rawValue!!)
-                }
+//                barcodes.forEach {
+//                    Log.d("TAG", it.rawValue!!)
+//                }
+                binding.scanUserId.text = barcodes.first().rawValue
+                barcodeScanner.close()
             }
             .addOnFailureListener {
-                Log.e(TAG, it.message ?: it.toString())
+                Log.e("TAG", it.message ?: it.toString())
             }.addOnCompleteListener {
                 // When the image is from CameraX analysis use case, must call image.close() on received
                 // images when finished using them. Otherwise, new images may not be received or the camera

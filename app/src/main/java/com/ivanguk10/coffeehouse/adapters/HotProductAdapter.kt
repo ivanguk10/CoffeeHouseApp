@@ -3,11 +3,12 @@ package com.ivanguk10.coffeehouse.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.ivanguk10.coffeehouse.data.database.entity.HotProduct
 import com.ivanguk10.coffeehouse.databinding.HotProductsBinding
 
 class HotProductAdapter: RecyclerView.Adapter<HotProductAdapter.HotProductViewHolder>() {
 
-    private var hotProducts = listOf<com.ivanguk10.coffeehouse.data.database.HotProduct>()
+    private var hotProducts = listOf<HotProduct>()
     //
     class HotProductViewHolder(val binding: HotProductsBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -29,7 +30,7 @@ class HotProductAdapter: RecyclerView.Adapter<HotProductAdapter.HotProductViewHo
         return hotProducts.size
     }
 
-    fun setData(newListOfNewsAndSales: List<com.ivanguk10.coffeehouse.data.database.HotProduct>) {
+    fun setData(newListOfNewsAndSales: List<HotProduct>) {
         this.hotProducts = newListOfNewsAndSales
         notifyDataSetChanged()
     }

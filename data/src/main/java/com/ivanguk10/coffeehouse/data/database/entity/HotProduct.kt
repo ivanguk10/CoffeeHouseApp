@@ -1,4 +1,4 @@
-package com.ivanguk10.coffeehouse.data.database
+package com.ivanguk10.coffeehouse.data.database.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

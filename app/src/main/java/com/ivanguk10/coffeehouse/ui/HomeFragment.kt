@@ -6,12 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ivanguk10.coffeehouse.R
 import com.ivanguk10.coffeehouse.adapters.HotProductAdapter
 import com.ivanguk10.coffeehouse.adapters.NewsAndSalesAdapter
+import com.ivanguk10.coffeehouse.data.util.NetworkResult
 import com.ivanguk10.coffeehouse.databinding.FragmentHomeBinding
 import com.ivanguk10.coffeehouse.viewmodels.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -96,9 +98,47 @@ class HomeFragment : Fragment() {
 //
 //        workManager.enqueue(request)
 
-        mainViewModel.readNewsAndSales.observe(viewLifecycleOwner, { newsAndSales ->
-            newsAndSalesAdapter.setData(newsAndSales)
+//        mainViewModel.readNewsAndSales.observe(viewLifecycleOwner, { newsAndSales ->
+//            newsAndSalesAdapter.setData(newsAndSales)
+//        })
+        mainViewModel.getNews()
+        mainViewModel.newsResponse.observe(viewLifecycleOwner, { response  ->
+            when (response) {
+                is NetworkResult.Success -> {
+                    response.data?.let { newsAndSalesAdapter.setData(it) }
+                }
+                is NetworkResult.Error -> {
+                    Toast.makeText(
+                        requireContext(),
+                        response.message.toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                is NetworkResult.Loading -> {
+                    Toast.makeText(requireContext(), "Loading", Toast.LENGTH_LONG).show()
+                }
+            }
         })
+
+//////////////////////////////////////////////////
+//        mainViewModel.getSingleNews()
+//        mainViewModel.singleNewsResponse.observe(viewLifecycleOwner, { response  ->
+//            when (response) {
+//                is NetworkResult.Success -> {
+//                    response.data?.let { newsAndSalesAdapter.setData(listOf(it)) }
+//                }
+//                is NetworkResult.Error -> {
+//                    Toast.makeText(
+//                        requireContext(),
+//                        response.message.toString(),
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                }
+//                is NetworkResult.Loading -> {
+//                    Toast.makeText(requireContext(), "Loading", Toast.LENGTH_LONG).show()
+//                }
+//            }
+//        })
 
         mainViewModel.readHotProducts.observe(viewLifecycleOwner, { hotProducts ->
             hotProductAdapter.setData(hotProducts)

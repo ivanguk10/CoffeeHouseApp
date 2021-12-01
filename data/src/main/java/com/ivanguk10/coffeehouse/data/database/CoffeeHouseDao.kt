@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import com.ivanguk10.coffeehouse.data.database.entity.HotProduct
+import com.ivanguk10.coffeehouse.data.database.entity.NewsAndSalesEntity
 
 @Dao
 interface CoffeeHouseDao {

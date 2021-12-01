@@ -6,13 +6,14 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.ivanguk10.coffeehouse.R
+import com.ivanguk10.coffeehouse.data.database.entity.NewsAndSalesEntity
 import com.ivanguk10.coffeehouse.databinding.NewsAndSalesItemBinding
 
 class NewsAndSalesAdapter(
     private val context: Context
 ): RecyclerView.Adapter<NewsAndSalesAdapter.NewsViewHolder>() {
 
-    private var listOfNewsAndSales = listOf<com.ivanguk10.coffeehouse.data.database.NewsAndSalesEntity>()
+    private var listOfNewsAndSales = listOf<NewsAndSalesEntity>()
 //
     class NewsViewHolder(val binding: NewsAndSalesItemBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -51,7 +52,7 @@ class NewsAndSalesAdapter(
         return listOfNewsAndSales.size
     }
 
-    fun setData(newListOfNewsAndSales: List<com.ivanguk10.coffeehouse.data.database.NewsAndSalesEntity>) {
+    fun setData(newListOfNewsAndSales: List<NewsAndSalesEntity>) {
         this.listOfNewsAndSales = newListOfNewsAndSales
         notifyDataSetChanged()
     }

@@ -1,5 +1,7 @@
 package com.ivanguk10.coffeehouse.data.di
 
+import com.ivanguk10.coffeehouse.data.Constants.Companion.BASE_URL
+import com.ivanguk10.coffeehouse.data.api.CoffeeHouseApi
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -16,26 +18,32 @@ val networkModule = module {
 
 private fun provideHttpClient() : OkHttpClient {
     return OkHttpClient.Builder()
-        .readTimeout(15, TimeUnit.SECONDS)
-        .connectTimeout(15, TimeUnit.SECONDS)
+        .readTimeout(60, TimeUnit.SECONDS)
+        .connectTimeout(60, TimeUnit.SECONDS)
         .build()
 }
+
+//private val contentType = "application/json".toMediaType()
+//private val jsonConfig = JsonConfiguration.Stable.copy(prettyPrint = true, ignoreUnknownKeys = true)
+//private val json = Json(jsonConfig)
+//
 
 private fun provideConverterFactory(): MoshiConverterFactory {
     return MoshiConverterFactory.create()
 }
+
 
 private fun provideRetrofitInstance(
     okHttpClient: OkHttpClient,
     moshiConverterFactory: MoshiConverterFactory
 ): Retrofit {
     return Retrofit.Builder()
-        .baseUrl("BASE_URL")
+        .baseUrl(BASE_URL)
         .client(okHttpClient)
         .addConverterFactory(moshiConverterFactory)
         .build()
 }
 
-private fun provideApiService(retrofit: Retrofit): com.ivanguk10.coffeehouse.data.api.CoffeeHouseApi {
-    return retrofit.create(com.ivanguk10.coffeehouse.data.api.CoffeeHouseApi::class.java)
+private fun provideApiService(retrofit: Retrofit): CoffeeHouseApi {
+    return retrofit.create(CoffeeHouseApi::class.java)
 }
