@@ -32,7 +32,6 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
@@ -44,12 +43,6 @@ class HomeFragment : Fragment() {
         binding.newsAndSalesTvAll.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_scanQrFragment)
         }
-
-
-//        val collapsedToolbar = activity?.findViewById<CollapsingToolbarLayout>(R.id.collapsingToolBar)
-//        collapsedToolbar?.visibility = View.VISIBLE
-//        val appBar = activity?.findViewById<AppBarLayout>(R.id.appBar)
-//        appBar?.visibility = View.VISIBLE
 
         setUpRecyclerView()
 
