@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homeFragment_to_scanQrFragment"
             app:destination="@id/scanQrFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_coffeeFragment"
+            app:destination="@id/coffeeFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -82,4 +85,13 @@
         android:name="com.ivanguk10.coffeehouse.ui.ScanQrFragment"
         android:label="fragment_scan_qr"
         tools:layout="@layout/fragment_scan_qr" />
+    <fragment
+        android:id="@+id/coffeeFragment"
+        android:name="com.ivanguk10.coffeehouse.ui.CoffeeFragment"
+        android:label="fragment_coffee"
+        tools:layout="@layout/fragment_coffee" >
+        <action
+            android:id="@+id/action_coffeeFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

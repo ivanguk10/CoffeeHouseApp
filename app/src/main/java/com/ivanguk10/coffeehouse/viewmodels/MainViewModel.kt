@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ivanguk10.coffeehouse.data.database.entity.CoffeeEntity
 import com.ivanguk10.coffeehouse.data.database.entity.HotProduct
 import com.ivanguk10.coffeehouse.data.database.entity.NewsAndSalesEntity
 import com.ivanguk10.coffeehouse.data.repository.Repository
@@ -44,12 +45,26 @@ class MainViewModel (
     private var _newNews: MutableLiveData<Response<List<NewsAndSalesEntity>>> = MutableLiveData()
     val newNews: LiveData<Response<List<NewsAndSalesEntity>>> = _newNews
 
+    private var _coffeeResponse: MutableLiveData<NetworkResult<List<CoffeeEntity>>> = MutableLiveData()
+    val coffeeResponse: LiveData<NetworkResult<List<CoffeeEntity>>> = _coffeeResponse
+
     fun getNews() = viewModelScope.launch(Dispatchers.IO) {
         getNewsSafeCall()
     }
 
     fun getSingleNews() = viewModelScope.launch(Dispatchers.IO) {
         getSingleNewsSafeCall()
+    }
+
+    fun getCoffee() = viewModelScope.launch(Dispatchers.IO) {
+        getCoffeeSafeCall()
+    }
+
+    private suspend fun getCoffeeSafeCall() {
+        _coffeeResponse.postValue(NetworkResult.Loading())
+
+        val response = repository.remote.getCoffee()
+        _coffeeResponse.postValue(handleCoffeeResponse(response))
     }
 
     private suspend fun getSingleNewsSafeCall() {
@@ -68,6 +83,23 @@ class MainViewModel (
             _newsResponse.postValue(NetworkResult.Error("exception."))
         }
 
+    }
+
+    private fun handleCoffeeResponse(
+        response: Response<List<CoffeeEntity>>
+    ): NetworkResult<List<CoffeeEntity>> {
+        return when {
+            response.body()!!.isEmpty() -> {
+                NetworkResult.Error("empty.")
+            }
+            response.isSuccessful -> {
+                val coffee = response.body()
+                NetworkResult.Success(coffee!!)
+            }
+            else -> {
+                NetworkResult.Error(response.message())
+            }
+        }
     }
 
     private fun handleNewsResponse(

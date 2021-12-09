@@ -13,6 +13,8 @@
     <color name="gray">#8B8A8C</color>
     <color name="darkGrey">#525153</color>
 
+    <color name="background">#E6E7ED</color>
+
     <color name="pink">#EA8BDB</color>
     <color name="darkPink">#FF386C</color>
     <color name="green">#AEE624</color>
