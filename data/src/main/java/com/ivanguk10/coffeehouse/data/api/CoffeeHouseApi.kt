@@ -1,7 +1,8 @@
 package com.ivanguk10.coffeehouse.data.api
 
-import com.ivanguk10.coffeehouse.data.database.entity.CoffeeEntity
+import com.ivanguk10.coffeehouse.data.model.CoffeeModel
 import com.ivanguk10.coffeehouse.data.database.entity.NewsAndSalesEntity
+import com.ivanguk10.coffeehouse.data.model.TeaModel
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -23,15 +24,28 @@ interface CoffeeHouseApi {
     )
 
     @GET("coffee")
-    suspend fun getCoffee(): Response<List<CoffeeEntity>>
+    suspend fun getCoffee(): Response<List<CoffeeModel>>
 
     @GET("coffee/{id}")
     suspend fun getCoffeeId(
         @Path("id") id: Int
-    ): Response<CoffeeEntity>
+    ): Response<CoffeeModel>
 
     @POST("coffee")
     suspend fun addCoffee(
-        @Body coffee: CoffeeEntity
+        @Body coffee: CoffeeModel
+    )
+
+    @GET("tea")
+    suspend fun getTea(): Response<List<TeaModel>>
+
+    @GET("tea/{id}")
+    suspend fun getTeaId(
+        @Path("id") id: Int
+    ): Response<TeaModel>
+
+    @POST("tea")
+    suspend fun addTea(
+        @Body tea: TeaModel
     )
 }

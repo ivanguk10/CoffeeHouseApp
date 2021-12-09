@@ -1,10 +1,10 @@
-package com.ivanguk10.coffeehouse.data.database.entity
+package com.ivanguk10.coffeehouse.data.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class CoffeeEntity(
+data class TeaModel(
     @Json(name = "id")
     val id: Int,
     @Json(name = "name")

@@ -145,6 +145,10 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_coffeeFragment)
         }
 
+        binding.teaAndCacaoButton.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_teaFragment)
+        }
+
         return binding.root
     }
 
