@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.ivanguk10.coffeehouse.data.model.CoffeeModel
 import com.ivanguk10.coffeehouse.data.database.entity.HotProduct
 import com.ivanguk10.coffeehouse.data.database.entity.NewsAndSalesEntity
+import com.ivanguk10.coffeehouse.data.model.DrinkModel
 import com.ivanguk10.coffeehouse.data.model.TeaModel
 import com.ivanguk10.coffeehouse.data.repository.Repository
 import com.ivanguk10.coffeehouse.data.util.NetworkResult
@@ -51,6 +52,9 @@ class MainViewModel (
     private var _teaResponse: MutableLiveData<NetworkResult<List<TeaModel>>> = MutableLiveData()
     val teaResponse: LiveData<NetworkResult<List<TeaModel>>> = _teaResponse
 
+    private var _drinkResponse: MutableLiveData<NetworkResult<List<DrinkModel>>> = MutableLiveData()
+    val drinkResponse: LiveData<NetworkResult<List<DrinkModel>>> = _drinkResponse
+
     fun getNews() = viewModelScope.launch(Dispatchers.IO) {
         getNewsSafeCall()
     }
@@ -65,6 +69,17 @@ class MainViewModel (
 
     fun getTea() = viewModelScope.launch(Dispatchers.IO) {
         getTeaSafeCall()
+    }
+
+    fun getDrink() = viewModelScope.launch(Dispatchers.IO) {
+        getDrinkSafeCall()
+    }
+
+    private suspend fun getDrinkSafeCall() {
+        _drinkResponse.postValue(NetworkResult.Loading())
+
+        val response = repository.remote.getDrink()
+        _drinkResponse.postValue((handleDrinkResponse(response)))
     }
 
     private suspend fun getTeaSafeCall() {
@@ -97,6 +112,23 @@ class MainViewModel (
             _newsResponse.postValue(NetworkResult.Error("exception."))
         }
 
+    }
+
+    private fun handleDrinkResponse(
+        response: Response<List<DrinkModel>>
+    ): NetworkResult<List<DrinkModel>> {
+        return when {
+            response.body()!!.isEmpty() -> {
+                NetworkResult.Error("empty.")
+            }
+            response.isSuccessful -> {
+                val drink = response.body()
+                NetworkResult.Success(drink!!)
+            }
+            else -> {
+                NetworkResult.Error(response.message())
+            }
+        }
     }
 
     private fun handleTeaResponse(

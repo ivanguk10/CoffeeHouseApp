@@ -113,26 +113,6 @@ class HomeFragment : Fragment() {
             }
         })
 
-//////////////////////////////////////////////////
-//        mainViewModel.getSingleNews()
-//        mainViewModel.singleNewsResponse.observe(viewLifecycleOwner, { response  ->
-//            when (response) {
-//                is NetworkResult.Success -> {
-//                    response.data?.let { newsAndSalesAdapter.setData(listOf(it)) }
-//                }
-//                is NetworkResult.Error -> {
-//                    Toast.makeText(
-//                        requireContext(),
-//                        response.message.toString(),
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                }
-//                is NetworkResult.Loading -> {
-//                    Toast.makeText(requireContext(), "Loading", Toast.LENGTH_LONG).show()
-//                }
-//            }
-//        })
-
         mainViewModel.readHotProducts.observe(viewLifecycleOwner, { hotProducts ->
             hotProductAdapter.setData(hotProducts)
         })
