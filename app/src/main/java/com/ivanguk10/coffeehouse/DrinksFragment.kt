@@ -9,33 +9,32 @@ import android.widget.Toast
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ivanguk10.coffeehouse.adapters.MenuAdapter
 import com.ivanguk10.coffeehouse.data.util.NetworkResult
-import com.ivanguk10.coffeehouse.databinding.FragmentTeaBinding
+import com.ivanguk10.coffeehouse.databinding.FragmentDrinksBinding
 import com.ivanguk10.coffeehouse.viewmodels.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class TeaFragment : Fragment() {
+class DrinksFragment : Fragment() {
 
-    private var _binding: FragmentTeaBinding? = null
+    private var _binding: FragmentDrinksBinding? = null
     private val binding get() = _binding!!
-    private val teaAdapter by lazy { MenuAdapter(2) }
     private val mainViewModel by viewModel<MainViewModel>()
-
+    private val menuAdapter by lazy { MenuAdapter(3) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentTeaBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentDrinksBinding.inflate(layoutInflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
         setUpRecyclerView()
 
-        mainViewModel.getTea()
-        mainViewModel.teaResponse.observe(viewLifecycleOwner, { response ->
+        mainViewModel.getDrinks()
+        mainViewModel.drinkResponse.observe(viewLifecycleOwner, { response ->
             when(response)  {
                 is NetworkResult.Success -> {
-                    response.data?.let { teaAdapter.setTeaData(it) }
+                    response.data?.let { menuAdapter.setDrinksData(it) }
                 }
                 is NetworkResult.Error -> {
                     Toast.makeText(
@@ -54,7 +53,7 @@ class TeaFragment : Fragment() {
     }
 
     private fun setUpRecyclerView() {
-        binding.drinksRecyclerView.adapter = teaAdapter
+        binding.drinksRecyclerView.adapter = menuAdapter
         binding.drinksRecyclerView.layoutManager = StaggeredGridLayoutManager(
             2, StaggeredGridLayoutManager.VERTICAL
         )
@@ -64,5 +63,5 @@ class TeaFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-}
 
+}

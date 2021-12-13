@@ -9,33 +9,32 @@ import android.widget.Toast
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.ivanguk10.coffeehouse.adapters.MenuAdapter
 import com.ivanguk10.coffeehouse.data.util.NetworkResult
-import com.ivanguk10.coffeehouse.databinding.FragmentTeaBinding
+import com.ivanguk10.coffeehouse.databinding.FragmentDessertsBinding
 import com.ivanguk10.coffeehouse.viewmodels.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class TeaFragment : Fragment() {
+class DessertsFragment : Fragment() {
 
-    private var _binding: FragmentTeaBinding? = null
+    private var _binding: FragmentDessertsBinding? = null
     private val binding get() = _binding!!
-    private val teaAdapter by lazy { MenuAdapter(2) }
+    private val dessertsAdapter by lazy { MenuAdapter(4) }
     private val mainViewModel by viewModel<MainViewModel>()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentTeaBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentDessertsBinding.inflate(layoutInflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
         setUpRecyclerView()
 
-        mainViewModel.getTea()
-        mainViewModel.teaResponse.observe(viewLifecycleOwner, { response ->
-            when(response)  {
+        mainViewModel.getDesserts()
+        mainViewModel.dessertsResponse.observe(viewLifecycleOwner, { response ->
+            when (response) {
                 is NetworkResult.Success -> {
-                    response.data?.let { teaAdapter.setTeaData(it) }
+                    response.data?.let { dessertsAdapter.setDessertsData(it) }
                 }
                 is NetworkResult.Error -> {
                     Toast.makeText(
@@ -50,12 +49,13 @@ class TeaFragment : Fragment() {
             }
         })
 
+
         return binding.root
     }
 
     private fun setUpRecyclerView() {
-        binding.drinksRecyclerView.adapter = teaAdapter
-        binding.drinksRecyclerView.layoutManager = StaggeredGridLayoutManager(
+        binding.dessertsRecyclerView.adapter = dessertsAdapter
+        binding.dessertsRecyclerView.layoutManager = StaggeredGridLayoutManager(
             2, StaggeredGridLayoutManager.VERTICAL
         )
     }
@@ -64,5 +64,5 @@ class TeaFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-}
 
+}

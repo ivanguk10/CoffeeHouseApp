@@ -4,6 +4,7 @@ import android.util.Log
 import com.ivanguk10.coffeehouse.data.api.CoffeeHouseApi
 import com.ivanguk10.coffeehouse.data.model.CoffeeModel
 import com.ivanguk10.coffeehouse.data.database.entity.NewsAndSalesEntity
+import com.ivanguk10.coffeehouse.data.model.DessertModel
 import com.ivanguk10.coffeehouse.data.model.DrinkModel
 import com.ivanguk10.coffeehouse.data.model.TeaModel
 import retrofit2.Response
@@ -58,5 +59,17 @@ class RemoteDataSource(private val coffeeHouseApi: CoffeeHouseApi) {
 
     suspend fun addDrink(drink: DrinkModel) {
         coffeeHouseApi.addDrink(drink)
+    }
+
+    suspend fun getDesserts(): Response<List<DessertModel>> {
+        return coffeeHouseApi.getDesserts()
+    }
+
+    suspend fun getDessertId(id: Int): Response<DessertModel> {
+        return coffeeHouseApi.getDessertId(id)
+    }
+
+    suspend fun addDessert(dessert: DessertModel) {
+        coffeeHouseApi.addDessert(dessert)
     }
 }

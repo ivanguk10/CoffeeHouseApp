@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.ivanguk10.coffeehouse.data.model.CoffeeModel
 import com.ivanguk10.coffeehouse.data.database.entity.HotProduct
 import com.ivanguk10.coffeehouse.data.database.entity.NewsAndSalesEntity
+import com.ivanguk10.coffeehouse.data.model.DessertModel
 import com.ivanguk10.coffeehouse.data.model.DrinkModel
 import com.ivanguk10.coffeehouse.data.model.TeaModel
 import com.ivanguk10.coffeehouse.data.repository.Repository
@@ -55,6 +56,9 @@ class MainViewModel (
     private var _drinkResponse: MutableLiveData<NetworkResult<List<DrinkModel>>> = MutableLiveData()
     val drinkResponse: LiveData<NetworkResult<List<DrinkModel>>> = _drinkResponse
 
+    private var _dessertsResponse: MutableLiveData<NetworkResult<List<DessertModel>>> = MutableLiveData()
+    val dessertsResponse: LiveData<NetworkResult<List<DessertModel>>> = _dessertsResponse
+
     fun getNews() = viewModelScope.launch(Dispatchers.IO) {
         getNewsSafeCall()
     }
@@ -71,8 +75,19 @@ class MainViewModel (
         getTeaSafeCall()
     }
 
-    fun getDrink() = viewModelScope.launch(Dispatchers.IO) {
+    fun getDrinks() = viewModelScope.launch(Dispatchers.IO) {
         getDrinkSafeCall()
+    }
+
+    fun getDesserts() = viewModelScope.launch(Dispatchers.IO) {
+        getDessertsSafeCall()
+    }
+
+    private suspend fun getDessertsSafeCall() {
+        _dessertsResponse.postValue(NetworkResult.Loading())
+
+        val response = repository.remote.getDesserts()
+        _dessertsResponse.postValue(handleDessertsResponse((response)))
     }
 
     private suspend fun getDrinkSafeCall() {
@@ -112,6 +127,23 @@ class MainViewModel (
             _newsResponse.postValue(NetworkResult.Error("exception."))
         }
 
+    }
+
+    private fun handleDessertsResponse(
+        response: Response<List<DessertModel>>
+    ): NetworkResult<List<DessertModel>> {
+        return when {
+            response.body()!!.isEmpty() -> {
+                NetworkResult.Error("empty.")
+            }
+            response.isSuccessful -> {
+                val dessert = response.body()
+                NetworkResult.Success(dessert!!)
+            }
+            else -> {
+                NetworkResult.Error(response.message())
+            }
+        }
     }
 
     private fun handleDrinkResponse(

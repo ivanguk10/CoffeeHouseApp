@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ivanguk10.coffeehouse.data.model.CoffeeModel
+import com.ivanguk10.coffeehouse.data.model.DessertModel
+import com.ivanguk10.coffeehouse.data.model.DrinkModel
 import com.ivanguk10.coffeehouse.data.model.TeaModel
 import com.ivanguk10.coffeehouse.databinding.MenuItemLayoutBinding
 
@@ -11,6 +13,8 @@ class MenuAdapter(private var listId: Int): RecyclerView.Adapter<MenuAdapter.Men
 
     private var coffeeList = listOf<CoffeeModel>()
     private var teaList = listOf<TeaModel>()
+    private var drinksList = listOf<DrinkModel>()
+    private var dessertsList = listOf<DessertModel>()
 
     class MenuViewHolder(val binding: MenuItemLayoutBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -31,6 +35,14 @@ class MenuAdapter(private var listId: Int): RecyclerView.Adapter<MenuAdapter.Men
                 holder.binding.menuItemPriceValue.text = teaList[position].price.toString()
                 holder.binding.menuItemName.text = teaList[position].name
             }
+            3 -> {
+                holder.binding.menuItemPriceValue.text = drinksList[position].price.toString()
+                holder.binding.menuItemName.text = drinksList[position].name
+            }
+            4 -> {
+                holder.binding.menuItemPriceValue.text = dessertsList[position].price.toString()
+                holder.binding.menuItemName.text = dessertsList[position].name
+            }
         }
     }
 
@@ -38,6 +50,8 @@ class MenuAdapter(private var listId: Int): RecyclerView.Adapter<MenuAdapter.Men
         return when(listId) {
             1 ->  coffeeList.size
             2 ->  teaList.size
+            3 -> drinksList.size
+            4 -> dessertsList.size
             else -> coffeeList.size
         }
     }
@@ -48,6 +62,14 @@ class MenuAdapter(private var listId: Int): RecyclerView.Adapter<MenuAdapter.Men
     }
     fun setTeaData(newMenuList: List<TeaModel>) {
         this.teaList = newMenuList
+        notifyDataSetChanged()
+    }
+    fun setDrinksData(newMenuList: List<DrinkModel>) {
+        this.drinksList = newMenuList
+        notifyDataSetChanged()
+    }
+    fun setDessertsData(newMenuList: List<DessertModel>) {
+        this.dessertsList = newMenuList
         notifyDataSetChanged()
     }
 

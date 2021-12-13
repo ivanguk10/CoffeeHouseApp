@@ -22,6 +22,12 @@
         <action
             android:id="@+id/action_homeFragment_to_teaFragment"
             app:destination="@id/teaFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_drinksFragment"
+            app:destination="@id/drinksFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_dessertsFragment"
+            app:destination="@id/dessertsFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -104,6 +110,24 @@
         tools:layout="@layout/fragment_tea" >
         <action
             android:id="@+id/action_teaFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/drinksFragment"
+        android:name="com.ivanguk10.coffeehouse.DrinksFragment"
+        android:label="fragment_drinks"
+        tools:layout="@layout/fragment_drinks" >
+        <action
+            android:id="@+id/action_drinksFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dessertsFragment"
+        android:name="com.ivanguk10.coffeehouse.DessertsFragment"
+        android:label="fragment_desserts"
+        tools:layout="@layout/fragment_desserts" >
+        <action
+            android:id="@+id/action_dessertsFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 </navigation>
