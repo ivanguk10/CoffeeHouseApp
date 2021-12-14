@@ -102,32 +102,53 @@
         <action
             android:id="@+id/action_coffeeFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_coffeeFragment_to_itemFragment"
+            app:destination="@id/itemFragment" />
     </fragment>
     <fragment
         android:id="@+id/teaFragment"
-        android:name="com.ivanguk10.coffeehouse.TeaFragment"
+        android:name="com.ivanguk10.coffeehouse.ui.TeaFragment"
         android:label="fragment_tea"
         tools:layout="@layout/fragment_tea" >
         <action
             android:id="@+id/action_teaFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_teaFragment_to_itemFragment"
+            app:destination="@id/itemFragment" />
     </fragment>
     <fragment
         android:id="@+id/drinksFragment"
-        android:name="com.ivanguk10.coffeehouse.DrinksFragment"
+        android:name="com.ivanguk10.coffeehouse.ui.DrinksFragment"
         android:label="fragment_drinks"
         tools:layout="@layout/fragment_drinks" >
         <action
             android:id="@+id/action_drinksFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_drinksFragment_to_itemFragment"
+            app:destination="@id/itemFragment" />
     </fragment>
     <fragment
         android:id="@+id/dessertsFragment"
-        android:name="com.ivanguk10.coffeehouse.DessertsFragment"
+        android:name="com.ivanguk10.coffeehouse.ui.DessertsFragment"
         android:label="fragment_desserts"
         tools:layout="@layout/fragment_desserts" >
         <action
             android:id="@+id/action_dessertsFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_dessertsFragment_to_itemFragment"
+            app:destination="@id/itemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemFragment"
+        android:name="com.ivanguk10.coffeehouse.ui.ItemFragment"
+        android:label="fragment_item"
+        tools:layout="@layout/fragment_item" >
+        <argument
+            android:name="menuType"
+            app:argType="string" />
     </fragment>
 </navigation>

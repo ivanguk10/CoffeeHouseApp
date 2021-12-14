@@ -120,12 +120,14 @@ class MainViewModel (
 
     private suspend fun getNewsSafeCall() {
         _newsResponse.postValue(NetworkResult.Loading())
-        try {
-            val response = repository.remote.getNews()
-            _newsResponse.postValue(handleNewsResponse(response))
-        } catch (e: Exception) {
-            _newsResponse.postValue(NetworkResult.Error("exception."))
-        }
+        val response = repository.remote.getNews()
+        _newsResponse.postValue(handleNewsResponse(response))
+//        try {
+//            val response = repository.remote.getNews()
+//            _newsResponse.postValue(handleNewsResponse(response))
+//        } catch (e: Exception) {
+//            _newsResponse.postValue(NetworkResult.Error("exception."))
+//        }
 
     }
 

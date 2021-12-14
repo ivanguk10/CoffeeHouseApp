@@ -23,6 +23,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="points">Баллы</string>
     <string name="user">Пользователь</string>
+    <string name="getPresent">Накопите нужное количество баллов и получите этот подарок!</string>
 
 
 </resources>
