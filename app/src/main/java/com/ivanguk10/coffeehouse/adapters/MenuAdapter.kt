@@ -3,10 +3,7 @@ package com.ivanguk10.coffeehouse.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.ivanguk10.coffeehouse.data.model.CoffeeModel
-import com.ivanguk10.coffeehouse.data.model.DessertModel
-import com.ivanguk10.coffeehouse.data.model.DrinkModel
-import com.ivanguk10.coffeehouse.data.model.TeaModel
+import com.ivanguk10.coffeehouse.data.model.*
 import com.ivanguk10.coffeehouse.databinding.MenuItemLayoutBinding
 
 class MenuAdapter(private var listId: Int): RecyclerView.Adapter<MenuAdapter.MenuViewHolder>() {
@@ -15,6 +12,7 @@ class MenuAdapter(private var listId: Int): RecyclerView.Adapter<MenuAdapter.Men
     private var teaList = listOf<TeaModel>()
     private var drinksList = listOf<DrinkModel>()
     private var dessertsList = listOf<DessertModel>()
+    private var altList = listOf<AltMilkModel>()
 
     class MenuViewHolder(val binding: MenuItemLayoutBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -43,6 +41,10 @@ class MenuAdapter(private var listId: Int): RecyclerView.Adapter<MenuAdapter.Men
                 holder.binding.menuItemPriceValue.text = dessertsList[position].price.toString()
                 holder.binding.menuItemName.text = dessertsList[position].name
             }
+            5 -> {
+                holder.binding.menuItemPriceValue.text = altList[position].price.toString()
+                holder.binding.menuItemName.text = altList[position].name
+            }
         }
     }
 
@@ -52,6 +54,7 @@ class MenuAdapter(private var listId: Int): RecyclerView.Adapter<MenuAdapter.Men
             2 ->  teaList.size
             3 -> drinksList.size
             4 -> dessertsList.size
+            5 -> altList.size
             else -> coffeeList.size
         }
     }
@@ -70,6 +73,10 @@ class MenuAdapter(private var listId: Int): RecyclerView.Adapter<MenuAdapter.Men
     }
     fun setDessertsData(newMenuList: List<DessertModel>) {
         this.dessertsList = newMenuList
+        notifyDataSetChanged()
+    }
+    fun setAltData(newMenuList: List<AltMilkModel>) {
+        this.altList = newMenuList
         notifyDataSetChanged()
     }
 

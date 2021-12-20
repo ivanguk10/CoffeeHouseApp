@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:context=".ui.ChooseDateFragment">
+        tools:context=".ui.menu.profile.ChooseDateFragment">
 
         <DatePicker
             android:id="@+id/calendar"

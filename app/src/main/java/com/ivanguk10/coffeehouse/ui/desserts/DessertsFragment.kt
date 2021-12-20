@@ -1,4 +1,4 @@
-package com.ivanguk10.coffeehouse.ui
+package com.ivanguk10.coffeehouse.ui.desserts
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,11 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.google.android.material.card.MaterialCardView
-import com.ivanguk10.coffeehouse.R
 import com.ivanguk10.coffeehouse.adapters.MenuAdapter
 import com.ivanguk10.coffeehouse.data.util.NetworkResult
 import com.ivanguk10.coffeehouse.databinding.FragmentDessertsBinding
@@ -32,12 +28,6 @@ class DessertsFragment : Fragment() {
         _binding = FragmentDessertsBinding.inflate(layoutInflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
-        val item = requireActivity().findViewById<ConstraintLayout>(R.id.menuItemBackground)
-        item.setOnClickListener {
-            val action = DessertsFragmentDirections.actionDessertsFragmentToItemFragment("dessert")
-            findNavController().navigate(action)
-        }
-
         setUpRecyclerView()
 
         mainViewModel.getDesserts()
@@ -58,7 +48,6 @@ class DessertsFragment : Fragment() {
                 }
             }
         })
-
 
         return binding.root
     }

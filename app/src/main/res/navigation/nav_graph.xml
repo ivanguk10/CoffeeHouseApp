@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.ivanguk10.coffeehouse.ui.HomeFragment"
+        android:name="com.ivanguk10.coffeehouse.ui.menu.HomeFragment"
         android:label="Coffee House"
         tools:layout="@layout/fragment_home" >
         <action
@@ -28,10 +28,16 @@
         <action
             android:id="@+id/action_homeFragment_to_dessertsFragment"
             app:destination="@id/dessertsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_addItemFragment"
+            app:destination="@id/addItemFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_altMilkFragment"
+            app:destination="@id/altMilkFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.ivanguk10.coffeehouse.ui.ProfileFragment"
+        android:name="com.ivanguk10.coffeehouse.ui.menu.profile.ProfileFragment"
         android:label="Профиль"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -55,7 +61,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.ivanguk10.coffeehouse.ui.SettingsFragment"
+        android:name="com.ivanguk10.coffeehouse.ui.menu.SettingsFragment"
         android:label="Настройки"
         tools:layout="@layout/fragment_settings" >
         <action
@@ -64,7 +70,7 @@
     </fragment>
     <fragment
         android:id="@+id/aboutUsFragment"
-        android:name="com.ivanguk10.coffeehouse.ui.AboutUsFragment"
+        android:name="com.ivanguk10.coffeehouse.ui.menu.AboutUsFragment"
         android:label="О нас"
         tools:layout="@layout/fragment_about_us" >
         <action
@@ -73,7 +79,7 @@
     </fragment>
     <dialog
         android:id="@+id/chooseDateFragment"
-        android:name="com.ivanguk10.coffeehouse.ui.ChooseDateFragment"
+        android:name="com.ivanguk10.coffeehouse.ui.menu.profile.ChooseDateFragment"
         android:label="fragment_choose_date"
         tools:layout="@layout/fragment_choose_date" >
         <action
@@ -96,59 +102,142 @@
         tools:layout="@layout/fragment_scan_qr" />
     <fragment
         android:id="@+id/coffeeFragment"
-        android:name="com.ivanguk10.coffeehouse.ui.CoffeeFragment"
+        android:name="com.ivanguk10.coffeehouse.ui.coffee.CoffeeFragment"
         android:label="fragment_coffee"
         tools:layout="@layout/fragment_coffee" >
         <action
             android:id="@+id/action_coffeeFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
-        <action
-            android:id="@+id/action_coffeeFragment_to_itemFragment"
-            app:destination="@id/itemFragment" />
     </fragment>
     <fragment
         android:id="@+id/teaFragment"
-        android:name="com.ivanguk10.coffeehouse.ui.TeaFragment"
+        android:name="com.ivanguk10.coffeehouse.ui.tea.TeaFragment"
         android:label="fragment_tea"
         tools:layout="@layout/fragment_tea" >
         <action
             android:id="@+id/action_teaFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
         <action
-            android:id="@+id/action_teaFragment_to_itemFragment"
-            app:destination="@id/itemFragment" />
+            android:id="@+id/action_teaFragment_to_teaItemFragment"
+            app:destination="@id/teaItemFragment" />
     </fragment>
     <fragment
         android:id="@+id/drinksFragment"
-        android:name="com.ivanguk10.coffeehouse.ui.DrinksFragment"
+        android:name="com.ivanguk10.coffeehouse.ui.colddrinks.DrinksFragment"
         android:label="fragment_drinks"
         tools:layout="@layout/fragment_drinks" >
         <action
             android:id="@+id/action_drinksFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
         <action
-            android:id="@+id/action_drinksFragment_to_itemFragment"
-            app:destination="@id/itemFragment" />
+            android:id="@+id/action_drinksFragment_to_drinksItemFragment"
+            app:destination="@id/drinksItemFragment" />
     </fragment>
     <fragment
         android:id="@+id/dessertsFragment"
-        android:name="com.ivanguk10.coffeehouse.ui.DessertsFragment"
+        android:name="com.ivanguk10.coffeehouse.ui.desserts.DessertsFragment"
         android:label="fragment_desserts"
         tools:layout="@layout/fragment_desserts" >
         <action
             android:id="@+id/action_dessertsFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
         <action
-            android:id="@+id/action_dessertsFragment_to_itemFragment"
-            app:destination="@id/itemFragment" />
+            android:id="@+id/action_dessertsFragment_to_dessertItemFragment"
+            app:destination="@id/dessertItemFragment" />
     </fragment>
     <fragment
-        android:id="@+id/itemFragment"
-        android:name="com.ivanguk10.coffeehouse.ui.ItemFragment"
-        android:label="fragment_item"
-        tools:layout="@layout/fragment_item" >
-        <argument
-            android:name="menuType"
-            app:argType="string" />
+        android:id="@+id/addItemFragment"
+        android:name="com.ivanguk10.coffeehouse.AddItemFragment"
+        android:label="fragment_add_item"
+        tools:layout="@layout/fragment_add_item" >
+        <action
+            android:id="@+id/action_addItemFragment_to_adminMenuFragment"
+            app:destination="@id/adminMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminMenuFragment"
+        android:name="com.ivanguk10.coffeehouse.AdminMenuFragment"
+        android:label="fragment_admin_menu"
+        tools:layout="@layout/fragment_admin_menu" />
+    <fragment
+        android:id="@+id/altMilkFragment"
+        android:name="com.ivanguk10.coffeehouse.ui.altmilk.AltMilkFragment"
+        android:label="fragment_alt_milk"
+        tools:layout="@layout/fragment_alt_milk" >
+        <action
+            android:id="@+id/action_altMilkFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_altMilkFragment_to_altMilkItemFragment"
+            app:destination="@id/altMilkItemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dessertItemFragment"
+        android:name="com.ivanguk10.coffeehouse.ui.desserts.DessertItemFragment"
+        android:label="fragment_dessert_item"
+        tools:layout="@layout/fragment_dessert_item" >
+        <action
+            android:id="@+id/action_dessertItemFragment_to_dessertsFragment"
+            app:destination="@id/dessertsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/drinksItemFragment"
+        android:name="com.ivanguk10.coffeehouse.ui.colddrinks.DrinksItemFragment"
+        android:label="fragment_drinks_item"
+        tools:layout="@layout/fragment_drinks_item" >
+        <action
+            android:id="@+id/action_drinksItemFragment_to_drinksFragment"
+            app:destination="@id/drinksFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/teaItemFragment"
+        android:name="com.ivanguk10.coffeehouse.ui.tea.TeaItemFragment"
+        android:label="fragment_tea_item"
+        tools:layout="@layout/fragment_tea_item" >
+        <action
+            android:id="@+id/action_teaItemFragment_to_teaFragment"
+            app:destination="@id/teaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/altMilkItemFragment"
+        android:name="com.ivanguk10.coffeehouse.ui.altmilk.AltMilkItemFragment"
+        android:label="fragment_alt_milk_item"
+        tools:layout="@layout/fragment_alt_milk_item" >
+        <action
+            android:id="@+id/action_altMilkItemFragment_to_altMilkFragment"
+            app:destination="@id/altMilkFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseFragment"
+        android:name="com.ivanguk10.coffeehouse.ui.loginregister.ChooseFragment"
+        android:label="fragment_choose"
+        tools:layout="@layout/fragment_choose" >
+        <action
+            android:id="@+id/action_chooseFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_chooseFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+        <action
+            android:id="@+id/action_chooseFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/logInFragment"
+        android:name="com.ivanguk10.coffeehouse.ui.loginregister.LogInFragment"
+        android:label="fragment_log_in"
+        tools:layout="@layout/fragment_log_in" >
+        <action
+            android:id="@+id/action_logInFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.ivanguk10.coffeehouse.ui.loginregister.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

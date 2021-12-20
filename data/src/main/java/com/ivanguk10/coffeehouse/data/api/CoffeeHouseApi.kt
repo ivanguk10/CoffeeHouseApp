@@ -1,10 +1,7 @@
 package com.ivanguk10.coffeehouse.data.api
 
-import com.ivanguk10.coffeehouse.data.model.CoffeeModel
 import com.ivanguk10.coffeehouse.data.database.entity.NewsAndSalesEntity
-import com.ivanguk10.coffeehouse.data.model.DessertModel
-import com.ivanguk10.coffeehouse.data.model.DrinkModel
-import com.ivanguk10.coffeehouse.data.model.TeaModel
+import com.ivanguk10.coffeehouse.data.model.*
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -24,7 +21,7 @@ interface CoffeeHouseApi {
     suspend fun addNews(
         @Body news: NewsAndSalesEntity
     )
-
+//////////
     @GET("coffee")
     suspend fun getCoffee(): Response<List<CoffeeModel>>
 
@@ -37,7 +34,7 @@ interface CoffeeHouseApi {
     suspend fun addCoffee(
         @Body coffee: CoffeeModel
     )
-
+//////////
     @GET("tea")
     suspend fun getTea(): Response<List<TeaModel>>
 
@@ -50,7 +47,7 @@ interface CoffeeHouseApi {
     suspend fun addTea(
         @Body tea: TeaModel
     )
-
+//////////
     @GET("drinks")
     suspend fun getDrink(): Response<List<DrinkModel>>
 
@@ -63,7 +60,7 @@ interface CoffeeHouseApi {
     suspend fun addDrink(
         @Body drink: DrinkModel
     )
-
+//////////
     @GET("desserts")
     suspend fun getDesserts(): Response<List<DessertModel>>
 
@@ -76,6 +73,17 @@ interface CoffeeHouseApi {
     suspend fun addDessert(
         @Body dessert: DessertModel
     )
+//////////
+    @GET("altmilk")
+    suspend fun getAlts(): Response<List<AltMilkModel>>
 
+    @GET("altmilk/{id}")
+    suspend fun getAltId(
+        @Path("id") id: Int
+    ): Response<AltMilkModel>
 
+    @POST("altmilk")
+    suspend fun addAlt(
+        @Body alt: AltMilkModel
+    )
 }

@@ -1,4 +1,4 @@
-package com.ivanguk10.coffeehouse.ui
+package com.ivanguk10.coffeehouse.ui.menu
 
 import android.os.Bundle
 import android.view.Gravity
@@ -127,6 +127,11 @@ class HomeFragment : Fragment() {
 
         binding.teaAndCacaoButton.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_teaFragment)
+        }
+
+
+        binding.opinionTv.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_addItemFragment)
         }
 
         return binding.root

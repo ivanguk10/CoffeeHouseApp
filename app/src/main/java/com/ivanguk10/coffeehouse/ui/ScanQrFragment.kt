@@ -161,9 +161,6 @@ class ScanQrFragment : Fragment() {
 
         barcodeScanner.process(inputImage)
             .addOnSuccessListener { barcodes ->
-//                barcodes.forEach {
-//                    Log.d("TAG", it.rawValue!!)
-//                }
                 binding.scanUserId.text = barcodes.first().rawValue
                 barcodeScanner.close()
             }

@@ -1,4 +1,4 @@
-package com.ivanguk10.coffeehouse.ui
+package com.ivanguk10.coffeehouse.ui.altmilk
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,35 +6,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.ivanguk10.coffeehouse.adapters.MenuAdapter
+import com.ivanguk10.coffeehouse.R
 import com.ivanguk10.coffeehouse.data.util.NetworkResult
-import com.ivanguk10.coffeehouse.databinding.FragmentDrinksBinding
-import com.ivanguk10.coffeehouse.viewmodels.MainViewModel
+import com.ivanguk10.coffeehouse.databinding.FragmentAltMilkItemBinding
+import com.ivanguk10.coffeehouse.viewmodels.ItemViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+class AltMilkItemFragment : Fragment() {
 
-class DrinksFragment : Fragment() {
-
-    private var _binding: FragmentDrinksBinding? = null
+    private var _binding: FragmentAltMilkItemBinding? = null
     private val binding get() = _binding!!
-    private val mainViewModel by viewModel<MainViewModel>()
-    private val menuAdapter by lazy { MenuAdapter(3) }
+    private val itemViewModel by viewModel<ItemViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDrinksBinding.inflate(layoutInflater, container, false)
-        binding.lifecycleOwner = viewLifecycleOwner
+        _binding = FragmentAltMilkItemBinding.inflate(layoutInflater, container, false)
 
-        setUpRecyclerView()
-
-        mainViewModel.getDrinks()
-        mainViewModel.drinkResponse.observe(viewLifecycleOwner, { response ->
-            when(response)  {
+        val id = 1
+        itemViewModel.getSingleAlt(id)
+        itemViewModel.altsResponse.observe(viewLifecycleOwner, { response  ->
+            when (response) {
                 is NetworkResult.Success -> {
-                    response.data?.let { menuAdapter.setDrinksData(it) }
+                    response.data?.let { setItemData(it.name, it.price) }
                 }
                 is NetworkResult.Error -> {
                     Toast.makeText(
@@ -52,16 +47,13 @@ class DrinksFragment : Fragment() {
         return binding.root
     }
 
-    private fun setUpRecyclerView() {
-        binding.drinksRecyclerView.adapter = menuAdapter
-        binding.drinksRecyclerView.layoutManager = StaggeredGridLayoutManager(
-            2, StaggeredGridLayoutManager.VERTICAL
-        )
+    private fun setItemData(title: String, price: Float) {
+        binding.menuTitleDrinkAlt.text = title
+        binding.altPrice.text = price.toString()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }

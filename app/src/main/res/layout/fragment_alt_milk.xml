@@ -6,11 +6,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.colddrinks.DrinksFragment"
+        tools:context=".ui.altmilk.AltMilkFragment"
         android:background="@color/lightGray">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/toolbarBackDesserts"
+            android:id="@+id/toolbarBackAlt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -19,7 +19,7 @@
             android:background="@color/white">
 
             <ImageView
-                android:id="@+id/dessertsBack"
+                android:id="@+id/altBack"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginStart="16dp"
@@ -31,23 +31,23 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/dessertsTitle"
+                android:id="@+id/altTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="@string/cold_drinks"
+                android:text="На альт молоке"
                 android:textColor="@color/black"
                 android:textSize="19sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/dessertsBack"
+                app:layout_constraintStart_toEndOf="@+id/altBack"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/drinksRecyclerView"
+            android:id="@+id/altRecyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
@@ -55,7 +55,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarBackDesserts" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbarBackAlt" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

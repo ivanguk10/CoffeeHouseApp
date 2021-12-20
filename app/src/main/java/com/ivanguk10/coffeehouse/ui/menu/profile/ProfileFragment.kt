@@ -1,4 +1,4 @@
-package com.ivanguk10.coffeehouse.ui
+package com.ivanguk10.coffeehouse.ui.menu.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

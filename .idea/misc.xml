@@ -31,14 +31,29 @@
         <entry key="..\:/MyProject/CoffeeHouseApp/app/src/main/res/menu/drawer_menu.xml" value="0.22" />
         <entry key="..\:/MyProject/CoffeeHouseApp/app/src/main/res/menu/new.xml" value="0.178125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18614130434782608" />
+        <entry key="app/src/main/res/layout/content.xml" value="0.11323896752706078" />
+        <entry key="app/src/main/res/layout/drawer_header.xml" value="0.11323896752706078" />
+        <entry key="app/src/main/res/layout/fragment_add_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_admin_menu.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_alt_milk.xml" value="0.11323896752706078" />
+        <entry key="app/src/main/res/layout/fragment_alt_milk_item.xml" value="0.23247863247863249" />
+        <entry key="app/src/main/res/layout/fragment_choose.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_coffee.xml" value="0.20516304347826086" />
+        <entry key="app/src/main/res/layout/fragment_coffee_item.xml" value="0.23247863247863249" />
+        <entry key="app/src/main/res/layout/fragment_dessert_item.xml" value="0.23247863247863249" />
         <entry key="app/src/main/res/layout/fragment_desserts.xml" value="0.20516304347826086" />
         <entry key="app/src/main/res/layout/fragment_drinks.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_drinks_item.xml" value="0.23247863247863249" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.20516304347826086" />
         <entry key="app/src/main/res/layout/fragment_item.xml" value="0.15625" />
+        <entry key="app/src/main/res/layout/fragment_log_in.xml" value="0.11323896752706078" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_tea.xml" value="0.20516304347826086" />
+        <entry key="app/src/main/res/layout/fragment_tea_item.xml" value="0.23247863247863249" />
         <entry key="app/src/main/res/layout/menu_item_layout.xml" value="0.15625" />
         <entry key="app/src/main/res/layout/single_item.xml" value="0.25" />
+        <entry key="app/src/main/res/menu/drawer_menu.xml" value="0.2287636669470143" />
       </map>
     </option>
   </component>

@@ -1,4 +1,4 @@
-package com.ivanguk10.coffeehouse.ui
+package com.ivanguk10.coffeehouse.ui.menu.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,10 +18,9 @@ class ChooseDateFragment : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentChooseDateBinding.inflate(layoutInflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
-
 
         binding.okBtn.setOnClickListener {
             sendAndNavigateDateToProfile()

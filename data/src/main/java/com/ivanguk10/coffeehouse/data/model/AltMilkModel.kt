@@ -1,4 +1,15 @@
 package com.ivanguk10.coffeehouse.data.model
 
-data class AltMilkModel(val id: Int) {
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
+data class AltMilkModel(
+    @Json(name = "id")
+    val id: Int,
+    @Json(name = "name")
+    var name: String,
+    @Json(name = "price")
+    var price: Float
+) {
 }

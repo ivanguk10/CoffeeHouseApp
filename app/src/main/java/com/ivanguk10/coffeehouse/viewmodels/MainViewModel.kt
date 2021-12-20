@@ -4,12 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ivanguk10.coffeehouse.data.model.CoffeeModel
 import com.ivanguk10.coffeehouse.data.database.entity.HotProduct
 import com.ivanguk10.coffeehouse.data.database.entity.NewsAndSalesEntity
-import com.ivanguk10.coffeehouse.data.model.DessertModel
-import com.ivanguk10.coffeehouse.data.model.DrinkModel
-import com.ivanguk10.coffeehouse.data.model.TeaModel
+import com.ivanguk10.coffeehouse.data.model.*
 import com.ivanguk10.coffeehouse.data.repository.Repository
 import com.ivanguk10.coffeehouse.data.util.NetworkResult
 import kotlinx.coroutines.Dispatchers
@@ -59,6 +56,9 @@ class MainViewModel (
     private var _dessertsResponse: MutableLiveData<NetworkResult<List<DessertModel>>> = MutableLiveData()
     val dessertsResponse: LiveData<NetworkResult<List<DessertModel>>> = _dessertsResponse
 
+    private var _altsResponse: MutableLiveData<NetworkResult<List<AltMilkModel>>> = MutableLiveData()
+    val altsResponse: LiveData<NetworkResult<List<AltMilkModel>>> = _altsResponse
+
     fun getNews() = viewModelScope.launch(Dispatchers.IO) {
         getNewsSafeCall()
     }
@@ -83,18 +83,29 @@ class MainViewModel (
         getDessertsSafeCall()
     }
 
+    fun getAlts() = viewModelScope.launch(Dispatchers.IO) {
+        getAltsSafeCall()
+    }
+
+    private suspend fun getAltsSafeCall() {
+        _altsResponse.postValue(NetworkResult.Loading())
+
+        val response = repository.remote.getAlts()
+        _altsResponse.postValue(handleAltsResponse(response))
+    }
+
     private suspend fun getDessertsSafeCall() {
         _dessertsResponse.postValue(NetworkResult.Loading())
 
         val response = repository.remote.getDesserts()
-        _dessertsResponse.postValue(handleDessertsResponse((response)))
+        _dessertsResponse.postValue(handleDessertsResponse(response))
     }
 
     private suspend fun getDrinkSafeCall() {
         _drinkResponse.postValue(NetworkResult.Loading())
 
         val response = repository.remote.getDrink()
-        _drinkResponse.postValue((handleDrinkResponse(response)))
+        _drinkResponse.postValue(handleDrinkResponse(response))
     }
 
     private suspend fun getTeaSafeCall() {
@@ -122,13 +133,23 @@ class MainViewModel (
         _newsResponse.postValue(NetworkResult.Loading())
         val response = repository.remote.getNews()
         _newsResponse.postValue(handleNewsResponse(response))
-//        try {
-//            val response = repository.remote.getNews()
-//            _newsResponse.postValue(handleNewsResponse(response))
-//        } catch (e: Exception) {
-//            _newsResponse.postValue(NetworkResult.Error("exception."))
-//        }
+    }
 
+    private fun handleAltsResponse(
+        response: Response<List<AltMilkModel>>
+    ): NetworkResult<List<AltMilkModel>> {
+        return when {
+            response.body()!!.isEmpty() -> {
+                NetworkResult.Error("empty.")
+            }
+            response.isSuccessful -> {
+                val dessert = response.body()
+                NetworkResult.Success(dessert!!)
+            }
+            else -> {
+                NetworkResult.Error(response.message())
+            }
+        }
     }
 
     private fun handleDessertsResponse(
@@ -229,6 +250,4 @@ class MainViewModel (
             }
         }
     }
-
-
 }
