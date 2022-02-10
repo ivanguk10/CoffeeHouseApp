@@ -21,5 +21,19 @@
     <color name="orange">#FD9616</color>
     <color name="yellow">#F6C019</color>
 
+    <color name="redColumn">#BD5841</color>
+    <color name="redColumnDark">#A54C38</color>
+    <color name="yellowColumn">#E9B54B</color>
+    <color name="yellowColumnDark">#AF852C</color>
+    <color name="greenColumn">#00AD64</color>
+    <color name="greenColumnDark">#337E5F</color>
+    <color name="tableText">#A0A0A0</color>
+    <color name="unchecked">#B3CFD6</color>
+
+
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#673AB7</color>
+
+    <color name="columnDark">#F7F7F7</color>
+    <color name="table">#E8E8E8</color>
+
 </resources>

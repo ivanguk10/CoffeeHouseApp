@@ -5,4 +5,32 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="width_1dp">1dp</dimen>
+    <dimen name="width_1_5dp">1.5dp</dimen>
+    <dimen name="width_2dp">2dp</dimen>
+    <dimen name="width_3dp">3dp</dimen>
+    <dimen name="width_4dp">4dp</dimen>
+    <dimen name="width_5dp">5dp</dimen>
+    <dimen name="width_6dp">6dp</dimen>
+    <dimen name="width_7dp">7dp</dimen>
+    <dimen name="width_8dp">8dp</dimen>
+    <dimen name="width_9dp">9dp</dimen>
+    <dimen name="width_10dp">10dp</dimen>
+    <dimen name="width_11dp">11dp</dimen>
+    <dimen name="width_12dp">12dp</dimen>
+    <dimen name="width_13dp">13dp</dimen>
+    <dimen name="width_14dp">14dp</dimen>
+    <dimen name="width_15dp">15dp</dimen>
+    <dimen name="width_16dp">16dp</dimen>
+    <dimen name="percent_dimen">20dp</dimen>
+
+    <dimen name="gant_period_width">100dp</dimen>
+    <dimen name="gant_row_height">48dp</dimen>
+    <dimen name="gant_separator_width">1dp</dimen>
+    <dimen name="gant_task_corner_radius">8dp</dimen>
+    <dimen name="gant_task_vertical_margin">4dp</dimen>
+    <dimen name="gant_task_text_horizontal_margin">4dp</dimen>
+
+    <dimen name="gant_period_name_text_size">14sp</dimen>
+    <dimen name="gant_task_name_text_size">12sp</dimen>
 </resources>
